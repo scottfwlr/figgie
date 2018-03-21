@@ -1,0 +1,36 @@
+#header {
+  border-bottom: 1px solid silver;
+  background-color: whitesmoke;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+
+}
+
+.logo-header {
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+.mid-header {
+  
+}
+
+.contact-me {
+
+}
+
+.contact-links {
+
+}
+
+.contact-li {
+
+}
+
+.contact-a {
+  font-weight: 600;
+  text-underline-position: under;
+  -webkit-text-underline-position: under;
+}

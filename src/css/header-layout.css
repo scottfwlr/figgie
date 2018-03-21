@@ -1,0 +1,47 @@
+#header {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  height: 50px;
+  max-height: 50px;
+  min-height: 50px;
+
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.logo {
+  flex: auto;
+}
+
+.logo-header {
+
+}
+
+.mid-header {
+  flex: auto;
+}
+
+.contact-me {
+  flex: auto;
+  display: flex;
+  align-items: center;
+}
+
+.contact-links {
+  flex: auto;
+  list-style: none;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.contact-li {
+  flex: auto;
+}
+
+.contact-a {
+  
+}
