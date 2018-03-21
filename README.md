@@ -42,4 +42,26 @@ Post-game data visualisation, styling refinements, further variety of computer o
 
 ## Checklist
 
-Forthcoming.
+### Phase I
+
+- [ ] Tooling/pipeline set up
+- [ ] webpage up locally
+- [ ] Intro screen
+- [ ] game window screen
+- [ ] post-game screen
+- [ ] navigation between screens
+- [ ] non-game-window styling
+
+### Phase II
+
+- [ ] Game logic
+- [ ] rudimentary game display in window 
+- [ ] basic computer opponent
+- [ ] in-game interaction/interface (keypress events)
+- [ ] card 3D CSS
+
+### Phase III
+
+- [ ] Post-game data visualisation
+- [ ] styling refinements
+- [ ] further variety of computer opponents
