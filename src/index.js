@@ -1,3 +1,8 @@
+import styles from 'testing';
 import greetings from 'babel_test';
 
-document.write(greetings('hello', 'scott'));
+
+
+console.log('oh no');
+
+console.log(greetings('scott'));

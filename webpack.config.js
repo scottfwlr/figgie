@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -9,21 +10,25 @@ module.exports = {
   },
   resolve: {
     modules: [
-      path.resolve(__dirname, "src"), 
       path.resolve(__dirname, "src", "page"), 
       path.resolve(__dirname, "src", "game"), 
+      path.resolve(__dirname, "src", "css"), 
+      path.resolve(__dirname, "src"), 
       "node_modules"
     ],
-    extensions: ['.js', '*']
+    extensions: ['.js', '.css', '*']
   },
   devtool: "eval-source-map",
   module: {
     rules: [
       {
         test: /\.js$/,
-        use: [
-          { loader: 'babel-loader' }
-        ]
+        exclude: /node_modules/,
+        loader: "babel-loader"
+      },
+      {
+        test: /\.css$/,
+        use: [ 'style-loader', 'css-loader' ]
       }
     ]
   }
