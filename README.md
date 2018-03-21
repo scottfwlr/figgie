@@ -44,8 +44,8 @@ Post-game data visualisation, styling refinements, further variety of computer o
 
 ### Phase I
 
-- [ ] Tooling/pipeline set up
-- [ ] webpage up locally
+- [x] Tooling/pipeline set up
+- [x] webpage up locally
 - [ ] Intro screen
 - [ ] game window screen
 - [ ] post-game screen
