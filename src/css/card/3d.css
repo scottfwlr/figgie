@@ -1,0 +1,60 @@
+#figgie {
+  -webkkit-perspective: 2000px;
+  perspective: 2000px;
+  
+  -webkit-perspective-origin: 50% 110%;
+  perspective-origin: 50% 110%;
+
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.card-container,
+.card,
+.card-front,
+.card-back {
+  transition: transform 1.6s ease-in-out;
+  -webkit-transition: transform 1.6s ease-in-out;
+
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card-container {
+
+}
+
+
+.card {
+  transform: rotateX( 30deg );
+  -webkit-transform: rotateX( 30deg );
+
+  transform-origin: right center;
+  -webkit-transform-origin: right center;
+}
+.flipped {
+  transform: rotateX( 30deg ) translateX( -100% ) rotateY( 179deg );
+  -webkit-transform: rotateX( 30deg ) translateX( -100% ) rotateY( 179deg );
+}
+
+
+.card-front {
+  transform: rotateY( 0deg );
+  -webkit-transform: rotateY( 0deg );
+}
+
+
+
+.card-back {
+  transform: rotateY( 179deg ) translateZ( 10px );
+  -webkit-transform: rotateY( 179deg ) translateZ( 10px );
+}
+.flipped .card-back {
+  transform: rotateY( 359deg ) translateZ( 10px );
+  -webkit-transform: rotateY( 359deg ) translateZ( 10px );
+}
+
+

@@ -14,21 +14,26 @@
 
 /* temp */
 
-.card {
+.card-container {
   flex: none;
   height: 88px;
   width: 63px;
-  background-color: silver;
+  position: relative;
 }
 
+.card,
 .card-front,
 .card-back {
+  position: absolute;
   height: 100%;
   width: 100%;
+  overflow: hidden;
+}
+
+.card {
 }
 
 .card-front {
-
 }
 
 .card-back {
