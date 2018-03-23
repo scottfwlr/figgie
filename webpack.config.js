@@ -13,9 +13,10 @@ module.exports = {
       path.resolve(__dirname, "src"), 
       path.resolve(__dirname, "src", "page"), 
       path.resolve(__dirname, "src", "game"), 
+      path.resolve(__dirname, "src", "card"), 
       "node_modules"
     ],
-    extensions: ['.js', '.css', '*']
+    extensions: ['.js', '.css', 'html', '*']
   },
   devtool: "eval-source-map",
   module: {

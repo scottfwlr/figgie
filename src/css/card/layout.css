@@ -1,0 +1,36 @@
+/* card-layout.css */
+
+
+/* temp */
+
+#figgie {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* temp */
+
+.card {
+  flex: none;
+  height: 88px;
+  width: 63px;
+  background-color: silver;
+}
+
+.card-front,
+.card-back {
+  height: 100%;
+  width: 100%;
+}
+
+.card-front {
+
+}
+
+.card-back {
+
+}
