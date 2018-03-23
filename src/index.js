@@ -9,4 +9,5 @@ document.addEventListener("DOMContentLoaded", () => {
   const intro = document.getElementById('intro');
   const game = document.getElementById('game');
   const postgame = document.getElementById('postgame');
+
 })
