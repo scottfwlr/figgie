@@ -33,11 +33,11 @@ const thirdCard = div('card-container', {
 export const thirdBaseCard = () => thirdCard.cloneNode(true);
 
 
-export const cardMaker = ({ card="", front="", back="" } = {}) => (
+export const cardMaker = ({ card, front, back }) => (
   div('card-container', {
     innerCard: div(`card ${card}`, {
       cardFront: div(`card-front ${front}`),
       cardBack: div(`card-back ${back}`)
     })
   })
-)
+) 

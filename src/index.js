@@ -6,7 +6,8 @@ import card from 'css/card';
 
 import { cardMaker } from 'deck';
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventLis
+tener("DOMContentLoaded", () => {
   const header = document.getElementById('header');
   const intro = document.getElementById('intro');
   const game = document.getElementById('game');

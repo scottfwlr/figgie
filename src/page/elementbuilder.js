@@ -4,7 +4,6 @@ export const buildElem = (tagName, classString, children) => {
 }
 
 export const elemBuilder = ({ tagName, classList, children = {} }) => {
-  debugger
   const e = document.createElement(tagName);
   classList.forEach(cls => e.classList.add(cls));
   Object.values(children).forEach(cNode => e.appendChild(cNode));
