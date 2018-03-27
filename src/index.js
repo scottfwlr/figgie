@@ -1,13 +1,12 @@
-import reset from 'css/reset'
-import base from 'css/base';
-import header from 'css/header';
-import page from 'css/page';
-import card from 'css/card';
+import css from 'css/index';
+import { toggleClass }  from 'utils';
 
-import { cardMaker } from 'deck';
+import Cards from 'card/cards';
+window.Cards = Cards;
 
-document.addEventLis
-tener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
+  Cards.setCard();
+
   const header = document.getElementById('header');
   const intro = document.getElementById('intro');
   const game = document.getElementById('game');
@@ -15,15 +14,6 @@ tener("DOMContentLoaded", () => {
 
   game.classList.add('visible');
 
-  const toggle = property => element => {
-    element.classList.contains(property) ?
-    element.classList.remove(property) :
-    element.classList.add(property)
-  }
 
-  const cards = Array.from(document.getElementsByClassName('card'));
-  const flip = () => cards.forEach(toggle('flipped'));
-  window.flip = flip;
-  window.cardMaker = cardMaker;
-
+  Cards.newDeck(document.getElementById('figgie-field'));  
 })

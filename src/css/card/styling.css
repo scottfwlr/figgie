@@ -4,8 +4,17 @@
 
 }
 
+.diams,
+.hearts {
+  color: red;
+}
+
 .card {
   background-color: floralwhite;
+}
+
+.card-front,
+.card-back {
   border: 1px solid gray;
   border-radius: 5px;
 }

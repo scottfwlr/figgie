@@ -1,0 +1,14 @@
+#figgie-field {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  width: 100%;
+  height: 100%;
+  /* overflow-y: scroll; */
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+}
+
+.card-container {
+  margin: 15px;
+}

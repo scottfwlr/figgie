@@ -10,10 +10,7 @@ module.exports = {
   },
   resolve: {
     modules: [
-      path.resolve(__dirname, "src"), 
-      path.resolve(__dirname, "src", "page"), 
-      path.resolve(__dirname, "src", "game"), 
-      path.resolve(__dirname, "src", "card"), 
+      path.resolve(__dirname, "src"),
       "node_modules"
     ],
     extensions: ['.js', '.css', 'html', '*']
