@@ -1,5 +1,6 @@
 /* card-styling.css */
 
+
 #figgie {
 
 }
@@ -9,8 +10,14 @@
   color: red;
 }
 
+.spades,
+.clubs {
+  color: black;
+}
+
 .card {
   background-color: floralwhite;
+  border-radius: 5px;
 }
 
 .card-front,
@@ -26,8 +33,8 @@
 }
 
 .card-back {
-  color: blue;
-  background: blue;
+/*   color: blue;
+  background: blue; */
 }
 
 .card-front {

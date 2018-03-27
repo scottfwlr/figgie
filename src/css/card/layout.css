@@ -1,23 +1,11 @@
 /* card-layout.css */
 
-
-/* temp */
-
-#figgie {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
-  align-items: center;
-}
-
 /* temp */
 
 .card-container {
   flex: none;
   height: 88px;
-  width: 63px;
+  width: 0px;
   position: relative;
 }
 
@@ -30,6 +18,8 @@
 }
 
 .card {
+  width: 63px;
+  transform: translateX(-50%);
 }
 
 .card-front {

@@ -1,14 +1,31 @@
-#figgie-field {
-  transform-style: preserve-3d;
-  -webkit-transform-style: preserve-3d;
+#figgie {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: stretch;
   width: 100%;
   height: 100%;
-  /* overflow-y: scroll; */
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
 }
 
-.card-container {
-  margin: 15px;
+#figgie-field {
+  flex: auto;
+}
+
+#figgie-hand {
+  flex: none;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.suit-container::before,
+.suit-container::after {
+  content: "";
+}
+
+.suit-container {
+  flex: auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
