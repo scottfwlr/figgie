@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const restSpread = require('babel-plugin-transform-object-rest-spread');
 
 module.exports = {
   mode: 'development',
@@ -21,12 +22,18 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['babel-preset-env'],
+            plugins: [restSpread]
+          }
+        }
       },
       {
         test: /\.css$/,
         use: [ 'style-loader', 'css-loader' ]
       }
     ]
-  }
+  },
 };
