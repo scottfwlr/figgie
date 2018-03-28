@@ -1,6 +1,12 @@
 /* card-layout.css */
 
-/* temp */
+.card-container,
+.card,
+.card-front,
+.card-back {
+  box-sizing: border-box;
+  transform-style: preserve-3d;
+}
 
 .card-container {
   flex: none;

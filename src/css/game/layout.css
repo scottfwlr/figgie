@@ -16,6 +16,7 @@
   flex-flow: row nowrap;
   justify-content: space-around;
   width: 100%;
+  min-height: 88px;
 }
 
 .suit-container::before,

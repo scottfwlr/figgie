@@ -1,0 +1,10 @@
+#figgie {
+  perspective: 1000px;
+  perspective-origin: 100% 50%;
+}
+
+#figgie-field,
+#figgie-hand,
+.suit-container {
+  transform-style: preserve-3d;
+}
