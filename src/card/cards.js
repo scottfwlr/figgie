@@ -1,31 +1,3 @@
-
-const didMove = ({ oldRect, newRect }) => {
-  return !(oldRect.top === newRect.top &&
-  oldRect.right === newRect.right &&
-  oldRect.bottom === newRect.bottom &&
-  oldRect.left === newRect.left &&
-  oldRect.width === newRect.width &&
-  oldRect.height === newRect.height &&
-  oldRect.x === newRect.x &&
-  oldRect.y === newRect.y)
-};
-
-const howMoved = ({ oldRect, newRect }) => ({
-  top: oldRect.top - newRect.top,
-  right: oldRect.right - newRect.right,
-  bottom: oldRect.bottom - newRect.bottom,
-  left: oldRect.left - newRect.left,
-  width: oldRect.width - newRect.width,
-  height: oldRect.height - newRect.height,
-  x: oldRect.x - newRect.x,
-  y: oldRect.y - newRect.y
-});
-
-const movePair = (entity, toNode) => ({ entity, toNode, oldRect: null, newRect: null });
-
-const rawMove = ({ entity, toNode }) => toNode.appendChild(entity);
-
-
 function newDeck() {
   const suits = ['diams', 'hearts', 'spades', 'clubs'];
   const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
@@ -61,67 +33,72 @@ function newHand() {
 }
 
 const setup = () => {
-
-
-
   return {
     hand: newHand(),
     deck: newDeck(),
-    move: (...pairs) => {
+    cardState: entity => ({ entity, x: null, y: null, absX: null, absY: null }),
+    movePair: (entity, toNode) => ({ entity, toNode }),
+    rawMove: ({ entity, toNode }) => toNode.appendChild(entity),
+    
+    move: (pairs) => {
+      const cards = Object.values(Cards.deck).map(Cards.cardState);
 
+      // the FLIP animation technique:
+      // within a single animation frame...
+      window.requestAnimationFrame(() => {
+        // get old location (of all cards)
+        cards.forEach(card => {
+          let { x, y } = card.entity.getBoundingClientRect();
+          card.x = x;
+          card.y = y;
+        });
+
+        // make the DOM changes (of just the moved cards)
+        pairs.forEach(pair => Cards.rawMove(pair));
+
+        // get the new location (of all cards)
+        cards.forEach(card => {
+          let { x, y } = card.entity.getBoundingClientRect();
+          card.x = card.x - x;
+          card.absX = Math.abs(x);
+          card.y = card.y - y;
+          card.absY = Math.abs(y);
+        });
+
+        // get the elements that changed position
+        const moved = cards.filter(({ x, y }) => x !== 0 || y !== 0);
+        ;
+        // find out how they changed
+        let bigX = 0;
+        let bigY = 0;
+        moved.forEach(({ absX, absY }) => {
+          if (absX > bigX) bigX = absX;
+          if (absY > bigY) bigY = absY;
+        });
+
+        moved.forEach(card => {
+          // calculate some offsets to normalise card speed
+          const offset = Math.max((1 - card.absX/bigX), (1 - card.absY/bigY), 0);
+          // style the cards to look like they haven't changed
+          const keyframes = [
+            {transform: `translate3d(${card.x}px, ${card.y}px, 0)`},
+            {transform: `translate3d(${card.x}px, ${card.y}px, 0)`, offset},
+            {transform: 'translate3d(0,0,0)'}
+          ];
+          // animate their transition to the new location
+          card.entity.animate(keyframes, { 
+          // introduce some organic randomness
+            duration: Math.max(50, ( (1000-offset*1000) + (100 - (Math.random()*200)) )) 
+          });
+        });
+      });
+    },
+    pickupCards: (...names) => {
+      Cards.move(names.map(name => {
+        return Cards.movePair(Cards.deck[name], Cards.hand[name.split('-')[2]]);
+      }));
     },
   };
-}
-
-
-
- 
-
-  
-const Cards = {
-  moves: (pairs) => {
-    window.requestAnimationFrame(() => {
-      // get old location
-      pairs.forEach(pair => pair.oldRect = pair.entity.getBoundingClientRect());
-      // make the DOM changes
-      pairs.forEach(pair => Cards.move(pair));
-      // get the new location
-      pairs.forEach(pair => pair.newRect = pair.entity.getBoundingClientRect());
-      // get the elements that changed position
-      pairs.filter(didMove).forEach(pair => {
-        // find out how they changed
-
-        // style them to look like they haven't changed, and animate
-        // their transition to the new location
-        pair.entity.animate
-      })
-    })
-  },
-
-
-
-  moveCard: (name, toNode) => {
-    const card = Cards.deck[name];
-    window.requestAnimationFrame(() => {
-      console.log('before');
-      console.log(card.getBoundingClientRect());
-      Cards.rawMove(name, toNode)
-      console.log('after');
-      console.log(card.getBoundingClientRect());
-    });
-  },
-
-  pickUpCard: name => {
-    const { suit } = Cards.suitValFromName(name);
-    Cards.rawMove(name, document.getElementsByClassName(`suit-container ${suit}`)[0]);
-  },
-
-  pickUp: (...names) => {
-    const pairs = names.map(name => movePair(Cards.deck[name], Cards.hand[Cards.suitValFromName(name).suit]));
-    Cards.moves(pairs)
-  },
-
 };
 
-
-export default Cards;
+export default setup;

@@ -1,11 +1,10 @@
 import css from 'css/index';
 import { toggleClass }  from 'utils';
-
-import Cards from 'card/cards';
-window.Cards = Cards;
+import webAnimations from 'web-animations-js';
+import setup from 'card/cards';
 
 document.addEventListener("DOMContentLoaded", () => {
-  Cards.setup();
+  window.Cards = setup();
 
   const header = document.getElementById('header');
   const intro = document.getElementById('intro');
@@ -15,6 +14,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   game.classList.add('visible');
 
-  Cards.pickUpCard('6-of-hearts');
 
 })
