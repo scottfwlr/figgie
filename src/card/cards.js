@@ -105,7 +105,7 @@ const setup = () => {
           card.entity.animate(keyframes, { 
             easing: 'ease',
           // introduce some organic-looking randomness
-            duration: Math.max(250, (1000-(card.offset*500))) + (50 - (Math.random()*100))
+            duration: (700-(card.offset*200)) + (25 - (Math.random()*50))
           });
         });
       });
