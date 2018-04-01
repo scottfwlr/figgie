@@ -1,10 +1,10 @@
 
 
 function newDeck() {
-  const suits = ['diams', 'hearts', 'spades', 'clubs'];
-  const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-  // const cardNode = document.adoptNode(document.getElementById('card-template'));
-  // cardNode.removeAttribute('id');
+  // const suits = ['diams', 'hearts', 'spades', 'clubs'];
+  // const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+  const cardNode = document.adoptNode(document.getElementById('card-template'));
+  cardNode.removeAttribute('id');
 
   const newCard = (suit, value) => {
     const card = cardNode.cloneNode(true);

@@ -10,12 +10,11 @@
 
 .card-container {
   flex: none;
-  height: 88px;
-  width: 0px;
+  height: 8px;
+  width: 8px;
   position: relative;
 }
 
-.card,
 .card-front,
 .card-back {
   position: absolute;
@@ -24,11 +23,18 @@
 }
 
 .card {
+  position: absolute;
+  height: 88px;
   width: 63px;
-  transform: translateX(-50%);
+  transform: translate3d(-50%, calc(-50% + 4px), 0);
+}
+
+.field-hand .card {
+  transform: rotateY( 180deg ) rotate( 90deg ) translate3d( -50%, -50%, -2px ) ;
 }
 
 .card-front {
+
 }
 
 .card-back {

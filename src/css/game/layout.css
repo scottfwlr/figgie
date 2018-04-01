@@ -8,20 +8,60 @@
 
 #figgie-field {
   flex: auto;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.field-hand {
+  flex: none;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.hand-container {
+  flex: auto;
+}
+
+.market-hand .hand-container {
+  height: 40px;
+}
+
+.field-hand .hand-container {
+  width: 54px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.field-market {
+  flex: auto;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+
+#market {
+  flex: auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.suit-market {
+  flex: none;
+  width: 20%;
 }
 
 #figgie-hand {
   flex: none;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   min-height: 88px;
-}
-
-.suit-container::before,
-.suit-container::after {
-  content: "";
 }
 
 .suit-container {
@@ -30,3 +70,8 @@
   flex-flow: row nowrap;
   justify-content: space-between;
 }
+
+.suit-container-spacer {
+  flex: auto;
+}
+

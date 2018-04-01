@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>Figgie</title>
-  <script src="bundle.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,600" rel="stylesheet">
+  <script src='bundle.js'></script>
+  <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,600' rel='stylesheet'>
 </head>
 <body>
   <main>
@@ -11,28 +11,28 @@
       <div class='logo'>
         <h1 class='logo-header'>Figgie</h1>
       </div>
-      <div class="mid-header">
+      <div class='mid-header'>
         <div class='contact-name-by'>by&nbsp;</div><div class='contact-name'>scott fowler</div>
       </div>
       <div class='contact-me'>
         <ul class='contact-links'>
           <li class='contact-li'>
-            <a class='contact-a' href="mailto:this.specific.scott@gmail.com">
+            <a class='contact-a' href='mailto:this.specific.scott@gmail.com'>
               <div class='contact-text'>email</div>
             </a>
           </li>
           <li class='contact-li'>
-            <a class='contact-a' href="https://github.com/scottfwlr">
+            <a class='contact-a' href='https://github.com/scottfwlr'>
               <div class='contact-text'>github</div>
             </a>
           </li>
           <li class='contact-li'>
-            <a class='contact-a' href="https://linkedin.com/in/scottfwlr">
+            <a class='contact-a' href='https://linkedin.com/in/scottfwlr'>
               <div class='contact-text'>linkedin</div>
             </a>
           </li>
           <li class='contact-li'>
-            <a class='contact-a' href="http://angel.co/scott-fowler-3">
+            <a class='contact-a' href='http://angel.co/scott-fowler-3'>
               <div class='contact-text'>angel list</div>
             </a>
           </li>
@@ -57,20 +57,45 @@
 
       <div id='card-template' class='card-container'>
         <div class='card'>
-          <figure class='card-front'></figure>
           <figure class='card-back'></figure>
+          <figure class='card-front'></figure>
         </div>
       </div>
       
       <div id='figgie'>
         <div id='figgie-field'>
-          
+          <div class='field-hand'>
+            <div class='hand-container empty'></div>
+            <div id='opp-one' class='hand-container'></div>
+            <div class='hand-container empty'></div>
+          </div>
+          <div class='field-market'>
+            <div class='market-hand'>
+              <div class='hand-container' id='opp-two'></div>
+            </div>
+            <div id='market'>
+              <div class='suit-market hearts'>&hearts;</div>
+              <div class='suit-market spades'>&spades;</div>
+              <div class='suit-market diams'>&diams;</div>
+              <div class='suit-market clubs'>&clubs;</div>
+            </div>
+          </div>
+          <div class='field-hand'>
+            <div class='hand-container empty'></div>
+            <div id='opp-three' class='hand-container'></div>
+            <div class='hand-container empty'></div>
+          </div>
         </div>
         <div id='figgie-hand'>
+          <div class='suit-container-spacer'></div>
           <div class='suit-container hearts'></div>
+          <div class='suit-container-spacer'></div>
           <div class='suit-container spades'></div>
+          <div class='suit-container-spacer'></div>
           <div class='suit-container diams'></div>
+          <div class='suit-container-spacer'></div>
           <div class='suit-container clubs'></div>
+          <div class='suit-container-spacer'></div>
         </div>
       </div>
 

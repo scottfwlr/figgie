@@ -4,7 +4,11 @@
 .card-front,
 .card-back {
   transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 
-.card {
+.card-back {
+  transform: rotateY( 180deg );
 }

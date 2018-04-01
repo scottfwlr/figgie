@@ -14,7 +14,7 @@ module.exports = {
       path.resolve(__dirname, "src"),
       "node_modules"
     ],
-    extensions: ['.js', '.css', 'html', '*']
+    extensions: ['.js', '.css', '.html', '*']
   },
   devtool: "eval-source-map",
   module: {
