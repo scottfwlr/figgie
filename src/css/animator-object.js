@@ -9,10 +9,12 @@ Entity = {
 
 Animator = {
 
-  // list of every entity that needs to be watched for state changes
+  // list of entities to be watched for changes
   registry: [],
 
-  // 
+  // list of moves to make next callback
+  moves: [],
+
 
   entityFrom: node => ({ 
       entity, 

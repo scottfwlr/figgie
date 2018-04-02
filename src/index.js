@@ -7,10 +7,10 @@ import webAnimations from 'web-animations-js';
 
 window.show = show;
 
-// import Animator from 'css/animator-class';
+import { AnimationEntity, Animator } from 'css/animator-class';
 
 document.addEventListener("DOMContentLoaded", () => {
-  window.Cards = setup();
+  window.Cards = setup(new Animator());
 
   const header = document.getElementById('header');
   const intro = document.getElementById('intro');
@@ -28,47 +28,49 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.setTimeout(() => {
       Cards.pickupCards(...clubNames);
-      Cards.deal('A-of-clubs', 'oppOne');
-      Cards.deal('2-of-clubs', 'oppTwo');
-      Cards.deal('3-of-clubs', 'oppThree');
+      Cards.deal('A-of-clubs', 'two');
+      Cards.deal('2-of-clubs', 'three');
+      Cards.deal('3-of-clubs', 'four');
     }, 500);
 
 
     window.setTimeout(() => {
       Cards.pickupCards(...diamNames);
-      Cards.deal('A-of-diams', 'oppOne');
-      Cards.deal('2-of-diams', 'oppTwo');
-      Cards.deal('3-of-diams', 'oppThree');
+      Cards.deal('A-of-diams', 'two');
+      Cards.deal('2-of-diams', 'three');
+      Cards.deal('3-of-diams', 'four');
     }, 1500);
 
     window.setTimeout(() => {
       Cards.pickupCards(...spadeNames);
-      Cards.deal('A-of-spades', 'oppOne');
-      Cards.deal('2-of-spades', 'oppTwo');
-      Cards.deal('3-of-spades', 'oppThree');
+      Cards.deal('A-of-spades', 'two');
+      Cards.deal('2-of-spades', 'three');
+      Cards.deal('3-of-spades', 'four');
     }, 2500);
 
     window.setTimeout(() => {
       Cards.pickupCards(...heartNames);
-      Cards.deal('A-of-hearts', 'oppOne');
-      Cards.deal('2-of-hearts', 'oppTwo');
-      Cards.deal('3-of-hearts', 'oppThree');
+      Cards.deal('A-of-hearts', 'two');
+      Cards.deal('2-of-hearts', 'three');
+      Cards.deal('3-of-hearts', 'four');
     }, 3500);
 
 
 
-    window.setTimeout(() => {
-      Cards.move(Array.from(document.querySelectorAll('.suit-container .card-container')).map(function(el, i) {
-        return Cards.movePair(el, Cards.hand[Object.keys(Cards.hand)[i%4]])
-      }));
-    }, 5000);
-    window.setTimeout(() => {
-      Cards.pickupCards(...clubNames.sort(), ...diamNames.sort(), ...spadeNames.sort(), ...heartNames.sort())
-    }, 7000);
+    // window.setTimeout(() => {
+    //   Cards.move(Array.from(document.querySelectorAll('.suit-container .card-container')).map(function(el, i) {
+    //     return Cards.movePair(el, Cards.hand[Object.keys(Cards.hand)[i%4]])
+    //   }));
+    // }, 5000);
+
+    // window.setTimeout(() => {
+    //   Cards.pickupCards(...clubNames.sort(), ...diamNames.sort(), ...spadeNames.sort(), ...heartNames.sort())
+    // }, 7000);
   };
 
   window.showOff = showOff;
-
+  Cards.animator.start();
   showOff();
+
 
 })

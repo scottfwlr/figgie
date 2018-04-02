@@ -3,19 +3,14 @@
 export class AnimationEntity {
   constructor(node) {
     this.node = node;
-    const rect = node.getBoundingClientRect();
+    this.delay = 0;
 
-    this.oX = rect.x;
-    this.oY = rect.y;
-    // this.setOldPos = this.setOldPos.bind(this);
+    this.oX = null;
+    this.oY = null;
 
-    this.nX = rect.x;
-    this.nY = rect.y;
-    // this.setNewPos = this.setNewPos.bind(this);
+    this.nX = 0;
+    this.nY = 0;
 
-    this.toFrame = { transform: 'translate3d(0, 0, 0)' };
-    // this.fromFrame = this.fromFrame.bind(this);
-    // this.animate = this.animate.bind(this);
   }
 
   // compat shim
@@ -24,66 +19,113 @@ export class AnimationEntity {
   }
 
   setOldPos() {
-    const rect = node.getBoundingClientRect();
+    const rect = this.node.getBoundingClientRect();
     this.oX = rect.x;
     this.oY = rect.y;
   }
 
-  inferOldPos() {
-    this.oX = this.nX;
-    this.oY = this.nY;
-  }
-
   setNewPos() {
-    const rect = node.getBoundingClientRect();
+    const rect = this.node.getBoundingClientRect();
     this.nX = rect.x;
     this.nY = rect.y;
   }
 
-  fromFrame() {
+  animate() {
     const dx = this.oX - this.nX;
     const dy = this.oY - this.nY;
-    return { transform: `translate3d(${dx}px, ${dy}px, 0)` };
-  }
+    const delay = this.delay;
+    this.delay = 0;
 
-  animate({ duration = 250, durationDelta = 0, easing = 'ease' }) {
-    duration += durationDelta;
-
-    this.node.animate([
-      this.fromFrame(), 
-      this.toFrame
+    return this.node.animate([
+      // style to look like it hasn't moved
+      { transform: `translate3d(${dx}px, ${dy}px, 0)` }, 
+      { transform: 'translate3d(0, 0, 0)' }
     ], {
-      duration,
-      easing
+      duration: 500,
+      delay,
+      easing: 'ease',
+      fill: 'backwards'
     });
   }
 
 }
 
 export class Animator {
-  constructor() {
+  constructor(array = []) {
+    this.running = false;
 
     // list of entities to be watched for changes
-    this.registry = [];
-
+    this.registry = {};
+    if (array.length > 0) {
+      array.forEach(e => this.register(e));
+    }
     // array of DOM changes to make next callback
     this.moves = [];
 
     this.animate = this.animate.bind(this);
-    this.move = this.move.bind(this);
+    this.loop = this.loop.bind(this);
   }
 
+  register(obj) {
+    if (obj instanceof Node) {
+      this.registry[obj.id] = AnimationEntity.from(obj);
+    }
+    else {
+      console.log("not a node:");
+      console.log(obj);
+    }
+  }
 
-  move() {
+  move(name, toNode) {
+    this.registry[name].toNode = toNode; 
+    this.moves.push(name);
+  }
 
+  stop() {
+    this.running = false;
+  }
+
+  start() {
+    this.running = true;
+    this.loop();
+  }
+
+  loop() {
+    if (this.moves.length) this.animate();
+    if (this.running) window.requestAnimationFrame(this.loop);
   }
 
   animate() {
-    
-    // ...
 
-    window.requestAnimationFrame(this.animate)
+    // the FLIP animation technique
+    // https://medium.com/developers-writing/animating-the-unanimatable-1346a5aab3cd
+
+    // within a single animation frame...
+    const entities = Object.values(this.registry);
+
+    // get old locations:
+    entities.forEach(e => e.setOldPos());
+
+    // make DOM changes:
+    let delay = 0;
+    this.moves.forEach((name, i) => {
+      this.registry[name].delay = i*20;
+      const { node, toNode } = this.registry[name];
+      toNode.appendChild(node);
+    })
+    this.moves = [];
+
+    // get new locations:
+    entities.forEach(e => e.setNewPos());
+
+    // animate everything that moved:
+    entities.forEach(e => {
+      if (e.oX === e.nX && e.oY === e.nY) return;
+      e.animate();
+    })
   }
 
-
 }
+
+
+
