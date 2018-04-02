@@ -7,6 +7,8 @@ import webAnimations from 'web-animations-js';
 
 window.show = show;
 
+// import Animator from 'css/animator-class';
+
 document.addEventListener("DOMContentLoaded", () => {
   window.Cards = setup();
 

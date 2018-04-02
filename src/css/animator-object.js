@@ -1,29 +1,20 @@
-import { newDeck } from 'card/cards';
+// experiment with performant JS
 
-function newHand() {
-  return {
-    hearts: document.getElementsByClassName('suit-container hearts')[0],
-    spades: document.getElementsByClassName('suit-container spades')[0],
-     diams: document.getElementsByClassName('suit-container diams')[0],
-     clubs: document.getElementsByClassName('suit-container clubs')[0]
-  };
+Entity = {
+  from: (node) => {
+    //
+  },
+
 }
 
-function newPlayers() {
-  return {
-    oppOne: document.getElementById('opp-one'),
-    oppTwo: document.getElementById('opp-two'),
-    oppThree: document.getElementById('opp-three')
-  };
-}
+Animator = {
 
-const setup = () => {
-  return {
-    deck: newDeck(),
-    hand: newHand(),
-    players: newPlayers(),
+  // list of every entity that needs to be watched for state changes
+  registry: [],
 
-    cardState: entity => ({ 
+  // 
+
+  entityFrom: node => ({ 
       entity, 
       x: null, y: null, 
       absX: null, absY: null, 
@@ -101,19 +92,4 @@ const setup = () => {
         });
       });
     },
-
-    pickupCards: (...names) => {
-      Cards.move(names.map(name => {
-        return Cards.movePair(Cards.deck[name], Cards.hand[name.split('-')[2]]);
-      }));
-    },
-
-    deal: (name, playerName) => {
-      const card = Cards.deck[name];
-      const player = Cards.players[playerName];
-      Cards.move([Cards.movePair(card, player)]);
-    }
-  };
-};
-
-export default setup;
+}
