@@ -2,10 +2,10 @@ import { newDeck } from 'card/cards';
 
 function newHand() {
   return {
-    hearts: document.getElementsByClassName('suit-container hearts')[0],
-    spades: document.getElementsByClassName('suit-container spades')[0],
-     diams: document.getElementsByClassName('suit-container diams')[0],
-     clubs: document.getElementsByClassName('suit-container clubs')[0]
+    hearts: document.getElementById('hand-hearts'),
+    spades: document.getElementById('hand-spades'),
+     diams: document.getElementById('hand-diams'),
+     clubs: document.getElementById('hand-clubs')
   };
 }
 
@@ -17,29 +17,40 @@ function newPlayers() {
   };
 }
 
+function newMarkets() {
+  return {
+    hearts: document.getElementById('market-box-hearts'),
+    spades: document.getElementById('market-box-spades'),
+     diams: document.getElementById('market-box-diams'),
+     clubs: document.getElementById('market-box-clubs')
+  };
+}
+
 const setup = (animator) => {
   const suitOf = name => name.split('-')[2];
   const deck = newDeck();
   const hand = newHand();
   const players = newPlayers();
+  const market = newMarkets();
   
   Object.values(deck).forEach(card => animator.register(card));
 
-  const deal = (name, playerName) => {
-    if (playerName === 'one') {
+  const deal = (name, toName) => {
+    if (toName === 'one') {
       animator.move(name, hand[suitOf(name)]);
     }
-    else {
-      animator.move(name, players[playerName]);
+    else if (toName === 'market') {
+      animator.move(name, market[suitOf(name)]);
     }
-  }
-
-  const pickupCards = (...names) => {
-    names.forEach(name => deal(name, 'one'));
+    else {
+      animator.move(name, players[toName]);
+    }
   }
 
   return {
-    deck, hand, players, animator, deal, pickupCards
+    deck, hand, players, market, 
+    animator, 
+    deal
   };
 }
 

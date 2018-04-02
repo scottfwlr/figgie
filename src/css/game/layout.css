@@ -4,6 +4,9 @@
   justify-content: stretch;
   width: 100%;
   height: 100%;
+  --card-height: 88px;
+  --card-width: 63px;
+  --card-container-size: 8px;
 }
 
 #figgie-field {
@@ -18,16 +21,28 @@
   flex-flow: column nowrap;
 }
 
+.market-hand { 
+  flex: none;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 50%;
+  align-self: center;
+}
+
 .hand-container {
   flex: auto;
 }
 
 .market-hand .hand-container {
-  height: 40px;
+  height: calc(var(--card-height) / 1.8);
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .field-hand .hand-container {
-  width: 54px;
+  width: calc(var(--card-height) / 1.4);
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
@@ -45,23 +60,58 @@
 #market {
   flex: auto;
   display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+}
+
+.half-market {
+  flex: auto;
+  display: flex;
   flex-flow: row nowrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .suit-market {
-  flex: none;
-  width: 20%;
+  flex: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-#figgie-hand {
+.market-marker {
   flex: none;
+}
+
+.market-details {
+  flex: auto;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.market-container {
+  flex: auto;
+  min-width: var(--card-width);
+  min-height: var(--card-height);
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.market-prices {
+  flex: auto;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+
+#figgie-hand {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  min-height: 88px;
+  min-height: var(--card-height);
 }
 
 .suit-container {

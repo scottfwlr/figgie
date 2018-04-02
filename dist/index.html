@@ -63,13 +63,40 @@
           </div>
           <div class='field-market'>
             <div class='market-hand'>
+              <div class='hand-container empty'></div>
               <div class='hand-container' id='opp-three'></div>
+              <div class='hand-container empty'></div>
             </div>
             <div id='market'>
-              <div class='suit-market hearts'>&hearts;</div>
-              <div class='suit-market spades'>&spades;</div>
-              <div class='suit-market diams'>&diams;</div>
-              <div class='suit-market clubs'>&clubs;</div>
+              <div class="half-market">
+                <div class='suit-market hearts'>
+                  &hearts;
+                  <div></div>
+                  <div class="market-container hearts" id='market-box-hearts'></div>
+                </div>
+                <div class='suit-market spades'>
+                  &spades;
+                  <div></div>
+                  <div class="market-container spades" id='market-box-spades'></div>
+                </div>
+              </div>
+              <div class="half-market">
+                <div class='suit-market diams'>
+                  <div class='market-marker'>&diams;</div>
+                  <div class='market-details'>
+                    <div class="market-container diams" id='market-box-diams'></div>
+                    <div class="market-prices">
+                      <div class="market-price-buy">Buy</div>
+                      <div class="market-price-sell">Sell</div>
+                    </div>
+                  </div>
+                </div>
+                <div class='suit-market clubs'>
+                  &clubs;
+                  <div></div>
+                  <div class="market-container clubs" id='market-box-clubs'></div>
+                </div>
+              </div>
             </div>
           </div>
           <div class='field-hand'>
@@ -80,13 +107,13 @@
         </div>
         <div id='figgie-hand'>
           <div class='suit-container-spacer'></div>
-          <div class='suit-container hearts'></div>
+          <div class='suit-container hearts' id='hand-hearts'></div>
           <div class='suit-container-spacer'></div>
-          <div class='suit-container spades'></div>
+          <div class='suit-container spades' id='hand-spades'></div>
           <div class='suit-container-spacer'></div>
-          <div class='suit-container diams'></div>
+          <div class='suit-container diams' id='hand-diams'></div>
           <div class='suit-container-spacer'></div>
-          <div class='suit-container clubs'></div>
+          <div class='suit-container clubs' id='hand-clubs'></div>
           <div class='suit-container-spacer'></div>
         </div>
       </div>

@@ -16,9 +16,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const intro = document.getElementById('intro');
   const game = document.getElementById('game');
   const postgame = document.getElementById('postgame');
-  const hand = document.getElementById('figgie-hand');
 
   show(game);
+
+
+  const pickupCards = (...names) => {
+    names.forEach(name => Cards.deal(name, 'one'));
+  }
 
   const showOff = () => {
     const clubNames = ['4-of-clubs', '5-of-clubs', '6-of-clubs', '7-of-clubs'];
@@ -27,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const heartNames = ['4-of-hearts', '5-of-hearts', '6-of-hearts', '7-of-hearts'];
 
     window.setTimeout(() => {
-      Cards.pickupCards(...clubNames);
+      pickupCards(...clubNames);
       Cards.deal('A-of-clubs', 'two');
       Cards.deal('2-of-clubs', 'three');
       Cards.deal('3-of-clubs', 'four');
@@ -35,37 +39,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     window.setTimeout(() => {
-      Cards.pickupCards(...diamNames);
+      pickupCards(...diamNames);
       Cards.deal('A-of-diams', 'two');
       Cards.deal('2-of-diams', 'three');
       Cards.deal('3-of-diams', 'four');
     }, 1500);
 
     window.setTimeout(() => {
-      Cards.pickupCards(...spadeNames);
+      pickupCards(...spadeNames);
       Cards.deal('A-of-spades', 'two');
       Cards.deal('2-of-spades', 'three');
       Cards.deal('3-of-spades', 'four');
     }, 2500);
 
     window.setTimeout(() => {
-      Cards.pickupCards(...heartNames);
+      pickupCards(...heartNames);
       Cards.deal('A-of-hearts', 'two');
       Cards.deal('2-of-hearts', 'three');
       Cards.deal('3-of-hearts', 'four');
     }, 3500);
-
-
-
-    // window.setTimeout(() => {
-    //   Cards.move(Array.from(document.querySelectorAll('.suit-container .card-container')).map(function(el, i) {
-    //     return Cards.movePair(el, Cards.hand[Object.keys(Cards.hand)[i%4]])
-    //   }));
-    // }, 5000);
-
-    // window.setTimeout(() => {
-    //   Cards.pickupCards(...clubNames.sort(), ...diamNames.sort(), ...spadeNames.sort(), ...heartNames.sort())
-    // }, 7000);
   };
 
   window.showOff = showOff;
