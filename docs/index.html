@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Figgie</title>
+  <script src='bundle.js'></script>
+  <link href='https://fonts.googleapis.com/css?family=Source+Code+Pro|Source+Sans+Pro:300,400,600' rel='stylesheet'>
+</head>
+<body>
+  <main>
+    <div id='header'>
+      <div class='logo'>
+        <h1 class='logo-header'>Figgie</h1>
+      </div>
+      <div class='mid-header'>
+        <div class='contact-name-by'>by&nbsp;</div><div class='contact-name'>scott fowler</div>
+      </div>
+      <div class='contact-me'>
+        <ul class='contact-links'>
+          <li class='contact-li'>
+            <a class='contact-a' href='mailto:this.specific.scott@gmail.com'>
+              <div class='contact-text'>email</div>
+            </a>
+          </li>
+          <li class='contact-li'>
+            <a class='contact-a' href='https://github.com/scottfwlr'>
+              <div class='contact-text'>github</div>
+            </a>
+          </li>
+          <li class='contact-li'>
+            <a class='contact-a' href='https://linkedin.com/in/scottfwlr'>
+              <div class='contact-text'>linkedin</div>
+            </a>
+          </li>
+          <li class='contact-li'>
+            <a class='contact-a' href='http://angel.co/scott-fowler-3'>
+              <div class='contact-text'>angel list</div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div id='intro' class='page'>
+      <article>
+        <section>
+          <h2>Instructions</h2>
+          <p>Here's how to play Figgie.</p>
+        </section>
+        <section>
+          <h2>Terminology</h2>
+        </section>
+        <section>
+          <h2>Strategy</h2>
+        </section>
+      </article>
+    </div>
+    <div id='game' class='page'>      
+      <div id='figgie'>
+        <div id='figgie-field'>
+          <div class='field-hand'>
+            <div class='hand-container empty'></div>
+            <div id='opp-two' class='hand-container'></div>
+            <div class='hand-container empty'></div>
+          </div>
+          <div class='field-market'>
+            <div class='market-hand'>
+              <div class='hand-container empty'></div>
+              <div class='hand-container' id='opp-three'></div>
+              <div class='hand-container empty'></div>
+            </div>
+            <div id='market'>
+              <div class="half-market">
+                <div class='suit-market hearts'>
+                   <div class='market-legend'>
+                    <p class='legend-marker'>High</p>
+                    <p class='suit-marker'>&hearts;</p>
+                    <p class='legend-marker'>Low</p>
+                  </div>
+                  <div class='market-podium'>
+                    <div class='buy-podium'>
+                      <div class="market-container" price="$0" id='buy-box-hearts'></div>
+                    </div>
+                    <div class='sell-podium'>
+                      <div class="market-container" price="$0" id='sell-box-hearts'></div>
+                    </div>
+                  </div>
+                </div>
+                <div class='suit-market spades'>
+                   <div class='market-legend'>
+                    <p class='legend-marker'>High</p>
+                    <p class='suit-marker'>&spades;</p>
+                    <p class='legend-marker'>Low</p>
+                  </div>
+                  <div class='market-podium'>
+                    <div class='buy-podium'>
+                      <div class="market-container" price="$0" id='buy-box-spades'></div>
+                    </div>
+                    <div class='sell-podium'>
+                      <div class="market-container" price="$0" id='sell-box-spades'></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="half-market">
+                <div class='suit-market diams'>
+                   <div class='market-legend'>
+                    <p class='legend-marker'>High</p>
+                    <p class='suit-marker'>&diams;</p>
+                    <p class='legend-marker'>Low</p>
+                  </div>
+                  <div class='market-podium'>
+                    <div class='buy-podium'>
+                      <div class="market-container" price="$0" id='buy-box-diams'></div>
+                    </div>
+                    <div class='sell-podium'>
+                      <div class="market-container" price="$0" id='sell-box-diams'></div>
+                    </div>
+                  </div>
+                </div>
+                <div class='suit-market clubs'>
+                   <div class='market-legend'>
+                    <p class='legend-marker'>High</p>
+                    <p class='suit-marker'>&clubs;</p>
+                    <p class='legend-marker'>Low</p>
+                  </div>
+                  <div class='market-podium'>
+                    <div class='buy-podium'>
+                      <div class="market-container" price="$0" id='buy-box-clubs'></div>
+                    </div>
+                    <div class='sell-podium'>
+                      <div class="market-container" price="$0" id='sell-box-clubs'></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='field-hand'>
+            <div class='hand-container empty'></div>
+            <div id='opp-four' class='hand-container'></div>
+            <div class='hand-container empty'></div>
+          </div>
+        </div>
+        <div id='figgie-hand'>
+          <div class='suit-container-spacer'></div>
+          <div class='suit-container hearts' id='hand-hearts'></div>
+          <div class='suit-container-spacer'></div>
+          <div class='suit-container spades' id='hand-spades'></div>
+          <div class='suit-container-spacer'></div>
+          <div class='suit-container diams' id='hand-diams'></div>
+          <div class='suit-container-spacer'></div>
+          <div class='suit-container clubs' id='hand-clubs'></div>
+          <div class='suit-container-spacer'></div>
+        </div>
+      </div>
+
+      </div>
+    </div>
+    <div id='postgame' class='page'>
+      <article>
+        <section>
+          <h2>Close of market</h2>
+        </section>
+        <figure id='data-vis'></figure>
+      </article>
+    </div>
+  </main>
+</body>
+</html>
