@@ -19,10 +19,18 @@ function newPlayers() {
 
 function newMarkets() {
   return {
-    hearts: document.getElementById('market-box-hearts'),
-    spades: document.getElementById('market-box-spades'),
-     diams: document.getElementById('market-box-diams'),
-     clubs: document.getElementById('market-box-clubs')
+    sell: {
+      hearts: document.getElementById('sell-box-hearts'),
+      spades: document.getElementById('sell-box-spades'),
+       diams: document.getElementById('sell-box-diams'),
+       clubs: document.getElementById('sell-box-clubs')
+    },
+    buy: {
+      hearts: document.getElementById('buy-box-hearts'),
+      spades: document.getElementById('buy-box-spades'),
+       diams: document.getElementById('buy-box-diams'),
+       clubs: document.getElementById('buy-box-clubs')
+    }
   };
 }
 
@@ -39,18 +47,27 @@ const setup = (animator) => {
     if (toName === 'one') {
       animator.move(name, hand[suitOf(name)]);
     }
-    else if (toName === 'market') {
-      animator.move(name, market[suitOf(name)]);
-    }
     else {
       animator.move(name, players[toName]);
     }
   }
 
+  const bid = (action, suit, price) => {
+    market[action][suit].setAttribute('price', `$${price}`);
+  }
+
+  const buy = (suit) => {
+
+  }
+
+  const sell = (suit) => {
+
+  }
+
   return {
     deck, hand, players, market, 
     animator, 
-    deal
+    deal, bid, buy, sell
   };
 }
 

@@ -13,12 +13,15 @@
   flex: auto;
   display: flex;
   flex-flow: row nowrap;
+  height: 100%;
 }
 
 .field-hand {
   flex: none;
   display: flex;
   flex-flow: column nowrap;
+  height: 50%;
+  align-self: center;
 }
 
 .market-hand { 
@@ -74,19 +77,34 @@
 .suit-market {
   flex: auto;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   justify-content: space-evenly;
-  align-items: center;
+  align-items: stretch;
+  padding: 10px;
 }
 
-.market-marker {
-  flex: none;
-}
-
-.market-details {
+.market-legend,
+.market-podium {
   flex: auto;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
+}
+
+.market-podium {
+  flex-grow: 2;
+  align-items: stretch;
+}
+
+.market-legend {
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.buy-podium,
+.sell-podium {
+  flex: auto;
+  display: flex;
+  position: relative;
 }
 
 .market-container {
@@ -98,11 +116,18 @@
   align-items: center;
 }
 
-.market-prices {
-  flex: auto;
-  display: flex;
-  flex-flow: column nowrap;
+.market-container::before {
+  position: absolute;
+  top: auto;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  content: attr(price);
+  font-size: 4em;
+  opacity: 0.5;
+  vertical-align: center;
 }
+
 
 
 #figgie-hand {

@@ -16,5 +16,14 @@
 
 .suit-market {
   background: lightgray;
+  margin: 10px;
+  box-shadow: inset 0px 0px 10px gray;
 }
 
+.legend-marker {
+  font-size: 1em;
+}
+
+.suit-marker {
+  font-size: 2em;
+}
