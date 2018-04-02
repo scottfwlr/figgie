@@ -1,0 +1,10 @@
+main {
+  font-family: 'Source Sans Pro', system-ui, 'Helvetica Neue', sans-serif;
+  /* font-weights: 300, 400, 600; */
+  text-rendering: optimizeLegibility;
+}
+
+.ticker {
+  font-family: 'Source Code Pro', monospace; 
+}
+
