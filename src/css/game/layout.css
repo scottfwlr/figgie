@@ -118,14 +118,7 @@
 
 .market-container::before {
   position: absolute;
-  top: auto;
-  bottom: auto;
-  left: auto;
-  right: auto;
   content: attr(price);
-  font-size: 4em;
-  opacity: 0.5;
-  vertical-align: center;
 }
 
 
