@@ -16,8 +16,6 @@
 
 .suit-market {
   background: lightgreen;
-  
-
   margin: 10px;
   box-shadow: inset 0px 0px 10px gray;
   border-radius: 5px;
@@ -25,16 +23,18 @@
 
 .legend-marker {
   font-size: calc(var(--card-container-size)*2);
+  font-weight: 700;
 }
 
 .suit-marker {
   font-size: calc(var(--card-container-size)*3);
+  font-weight: 700;
 }
 
 .market-container::before {
-  font-size: calc(var(--card-container-size)*3);
+  font-size: calc(var(--card-container-size)*4);
   opacity: 0.5;
-  vertical-align: center;
+  font-weight: 700;
 }
 
 /* The Patterns ------- */

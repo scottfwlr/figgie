@@ -1,3 +1,5 @@
+
+
 #figgie {
   display: flex;
   flex-flow: column nowrap;
@@ -7,6 +9,14 @@
   --card-height: 88px;
   --card-width: 63px;
   --card-container-size: 8px;
+}
+
+@media (max-width: 640px) {
+  #figgie {
+  --card-height: 66px;
+  --card-width: 47px;
+  --card-container-size: 6px;
+  }
 }
 
 #figgie-field {

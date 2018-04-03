@@ -28,7 +28,7 @@
 
 .card-front {
   font-weight: 600;
-  font-size: 24px;
+  font-size: calc(var(--card-container-size)*3);
   text-align: center;
 }
 

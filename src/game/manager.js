@@ -1,4 +1,5 @@
 import { newDeck } from 'card/cards';
+import { byCardValue } from 'utils';
 
 function newHand() {
   return {
@@ -52,6 +53,16 @@ const setup = (animator) => {
     }
   }
 
+  const sort = () => {
+    Object.values(hand).forEach(suit => {
+      const cards = Array.from(suit.getElementsByClassName('card-container'));
+      cards.sort(byCardValue);
+      for (let i = 0; i < cards.length; i++) {
+        deal(cards[i].id, 'one');
+      }
+    });
+  }
+
   const bid = (action, suit, price) => {
     market[action][suit].setAttribute('price', `$${price}`);
   }
@@ -66,7 +77,7 @@ const setup = (animator) => {
 
   return {
     deck, hand, players, market, 
-    animator, 
+    animator, sort,
     deal, bid, buy, sell
   };
 }
