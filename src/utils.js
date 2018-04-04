@@ -36,3 +36,5 @@ export const byCardValue = (cardA, cardB) => {
   const b = cardValue[ cardB.id.split('-')[0] ];
   return a - b;
 }
+
+export const randomly = () => Math.random() - 0.5;

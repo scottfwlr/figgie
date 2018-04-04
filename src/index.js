@@ -2,7 +2,7 @@ import Figgie from 'game/figgie';
 import setup from 'game/manager';
 
 import css from 'css/index';
-import { show }  from 'utils';
+import { show, randomly }  from 'utils';
 import webAnimations from 'web-animations-js';
 
 window.show = show;
@@ -25,10 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const showOff = () => {
-    const clubNames = ['4-of-clubs', '5-of-clubs', '6-of-clubs', '7-of-clubs'];
-    const diamNames = ['4-of-diams', '5-of-diams', '6-of-diams', '7-of-diams'];
-    const spadeNames = ['4-of-spades', '5-of-spades', '6-of-spades', '7-of-spades'];
-    const heartNames = ['4-of-hearts', '5-of-hearts', '6-of-hearts', '7-of-hearts'];
+    const clubNames = ['4-of-clubs', '6-of-clubs', '7-of-clubs', '10-of-clubs', 'K-of-clubs'].sort(randomly);
+    const diamNames = ['4-of-diams', '5-of-diams', '7-of-diams', 'J-of-diams'].sort(randomly);
+    const spadeNames = ['4-of-spades', '5-of-spades', '6-of-spades', '7-of-spades', '9-of-spades'].sort(randomly);
+    const heartNames = ['4-of-hearts', '5-of-hearts', '6-of-hearts', '7-of-hearts'].sort(randomly);
 
     window.setTimeout(() => {
       pickupCards(...clubNames);
@@ -43,21 +43,25 @@ document.addEventListener("DOMContentLoaded", () => {
       Cards.deal('A-of-diams', 'two');
       Cards.deal('2-of-diams', 'three');
       Cards.deal('3-of-diams', 'four');
-    }, 1500);
+    }, 1000);
 
     window.setTimeout(() => {
       pickupCards(...spadeNames);
       Cards.deal('A-of-spades', 'two');
       Cards.deal('2-of-spades', 'three');
       Cards.deal('3-of-spades', 'four');
-    }, 2500);
+    }, 1500);
 
     window.setTimeout(() => {
       pickupCards(...heartNames);
       Cards.deal('A-of-hearts', 'two');
       Cards.deal('2-of-hearts', 'three');
       Cards.deal('3-of-hearts', 'four');
-    }, 3500);
+    }, 2000);
+
+    window.setTimeout(() => {
+      Cards.sort()
+    }, 3200);
   };
 
   window.showOff = showOff;

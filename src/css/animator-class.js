@@ -41,7 +41,7 @@ export class AnimationEntity {
       { transform: `translate3d(${dx}px, ${dy}px, 0)` }, 
       { transform: 'translate3d(0, 0, 0)' }
     ], {
-      duration: 500,
+      duration: 400,
       delay,
       easing: 'ease',
       fill: 'backwards'
