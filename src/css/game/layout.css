@@ -11,7 +11,7 @@
   --card-container-size: 8px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 670px) {
   #figgie {
   --card-height: 66px;
   --card-width: 47px;
@@ -73,11 +73,11 @@
 #market {
   flex: auto;
   display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-evenly;
+  flex-flow: column wrap;
+  /* border-width: 5px; */
 }
 
-.half-market {
+.suit-market-container {
   flex: auto;
   display: flex;
   flex-flow: row nowrap;
@@ -88,39 +88,45 @@
   flex: auto;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-evenly;
-  align-items: stretch;
-  padding: 10px;
+  align-items: center;
+  justify-content: center;
 }
 
-.market-legend,
+.suit-marker {
+  width: calc(var(--card-container-size)*5);
+  flex: none;
+}
+
 .market-podium {
-  flex: auto;
   display: flex;
   flex-flow: column nowrap;
-}
-
-.market-podium {
-  flex-grow: 2;
-  align-items: stretch;
-}
-
-.market-legend {
-  align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .buy-podium,
 .sell-podium {
-  flex: auto;
+  flex: none;
   display: flex;
+  flex-flow: row nowrap;
   position: relative;
 }
 
+.legend-marker {
+  flex: none;
+}
+
+.sell-podium .legend-marker {
+  align-self: flex-start;
+}
+
+.buy-podium .legend-marker {
+  align-self: flex-end;
+}
+
 .market-container {
-  flex: auto;
-  min-width: var(--card-width);
-  min-height: var(--card-height);
+  flex: none;
+  min-width: calc(var(--card-container-size) + var(--card-width));
+  min-height: calc(var(--card-container-size) + var(--card-height));
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -128,6 +134,7 @@
 
 .market-container::before {
   position: absolute;
+  left: 0;
   content: attr(price);
 }
 

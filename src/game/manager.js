@@ -68,7 +68,7 @@ const setup = (animator) => {
   }
 
   const buy = (suit) => {
-
+    
   }
 
   const sell = (suit) => {
