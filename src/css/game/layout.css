@@ -135,7 +135,7 @@
 .market-container::before {
   position: absolute;
   left: 0;
-  content: attr(price);
+  content: "$" attr(price);
 }
 
 

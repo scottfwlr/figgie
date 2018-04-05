@@ -1,5 +1,6 @@
-import Figgie from 'game/figgie';
+// import Figgie from 'game/figgie';
 import setup from 'game/manager';
+import Player from 'game/player';
 
 import css from 'css/index';
 import { show, randomly }  from 'utils';
@@ -11,6 +12,7 @@ import { AnimationEntity, Animator } from 'css/animator-class';
 
 document.addEventListener("DOMContentLoaded", () => {
   window.Cards = setup(new Animator());
+  window.Play = new Player({ name: 'one', markets: Cards.markets });
 
   const header = document.getElementById('header');
   const intro = document.getElementById('intro');

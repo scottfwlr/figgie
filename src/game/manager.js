@@ -40,9 +40,11 @@ const setup = (animator) => {
   const deck = newDeck();
   const hand = newHand();
   const players = newPlayers();
-  const market = newMarkets();
-  
+  const markets = newMarkets();
+
   Object.values(deck).forEach(card => animator.register(card));
+  Object.values(markets.buy).forEach(box => box.setAttribute('price', '-'))
+  Object.values(markets.sell).forEach(box => box.setAttribute('price', '-'))
 
   const deal = (name, toName) => {
     if (toName === 'one') {
@@ -63,8 +65,25 @@ const setup = (animator) => {
     });
   }
 
-  const bid = (action, suit, price) => {
-    market[action][suit].setAttribute('price', `$${price}`);
+  const bids = {
+    sell: {
+      hearts: null,
+      spades: null,
+       diams: null,
+       clubs: null
+    },
+    buy: {
+      hearts: null,
+      spades: null,
+       diams: null,
+       clubs: null
+    }
+  }
+
+  const submitBid = bid => {
+    const { player, action, suit, price } = bid;
+    markets[action][suit].setAttribute('price', `${price}`);
+    bids[action][suit] = bid;
   }
 
   const buy = (suit) => {
@@ -76,9 +95,9 @@ const setup = (animator) => {
   }
 
   return {
-    deck, hand, players, market, 
+    deck, hand, players, markets, 
     animator, sort,
-    deal, bid, buy, sell
+    deal, submitBid, buy, sell
   };
 }
 
