@@ -159,12 +159,12 @@ const setup = (animator) => {
 
       changeCash(buyer.player, -1 * buyer.price);
       animator.move(cash.id, podium);
+      bids = newBids();
 
       const finalize = () => {
         deal(card.id, buyer.player);
         animator.move(cash.id, stackOf(seller.player));
         changeCash(seller.player, seller.price);
-        bids = newBids();
         Object.values(markets.buy).forEach(box => box.setAttribute('price', '-'));
         Object.values(markets.sell).forEach(box => box.setAttribute('price', '-'));
       }

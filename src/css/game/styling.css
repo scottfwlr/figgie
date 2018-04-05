@@ -53,3 +53,15 @@
 #cash {
   font-size: 36px;
 }
+
+.sell-podium,
+.buy-podium {
+  padding: 5px;
+  transition: transform 0.1s ease-in;
+}
+
+.sell-podium:hover,
+.buy-podium:hover {
+  transform: scale(1.15);
+  transition: transform 0.1s ease-out;
+}

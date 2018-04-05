@@ -90,6 +90,18 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let k = 0; k < gameDeck.length; k++) {
       Cards.deal(gameDeck[k], playerNames[k%4]);
     }
+
+    Array.from(document.getElementsByClassName('sell-podium')).forEach(podium => {
+      podium.addEventListener('click', e => {
+        Cards.takeBid('one', 'buy', e.currentTarget.getAttribute('suit'))
+      })
+    })
+
+    Array.from(document.getElementsByClassName('buy-podium')).forEach(podium => {
+      podium.addEventListener('click', e => {
+        Cards.takeBid('one', 'sell', e.currentTarget.getAttribute('suit'))
+      })
+    })
   }
 
   window.showOff = showOff;
