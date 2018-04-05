@@ -10,25 +10,12 @@ export default class Player {
     this.hand = hand;
     this.markets = markets;
 
-    this.readStack = this.readStack.bind(this);
-    this.readHand = this.readHand.bind(this);
     this.bidBuy = this.bidBuy.bind(this);
     this.bidSell = this.bidSell.bind(this);
     this.bidBoth = this.bidBoth.bind(this);
   }
 
-  readStack() {
-    return Cards.cashOf(this.name);
-  }
 
-  readHand() {
-    return { 
-      hearts: this.hand.getElementsByClassName('card-container hearts').length,
-      spades: this.hand.getElementsByClassName('card-container spades').length,
-      diams: this.hand.getElementsByClassName('card-container diams').length,
-      clubs: this.hand.getElementsByClassName('card-container clubs').length
-    };
-  }
 
   bidBuy(suit, price) {
     return Cards.submitBid({

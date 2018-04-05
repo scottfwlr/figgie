@@ -1,6 +1,7 @@
 // import Figgie from 'game/figgie';
 import setup from 'game/manager';
 import Player from 'game/player';
+import AI from 'game/ai';
 
 import css from 'css/index';
 import { show, randomly }  from 'utils';
@@ -13,6 +14,9 @@ import { AnimationEntity, Animator } from 'css/animator-class';
 document.addEventListener("DOMContentLoaded", () => {
   window.Cards = setup(new Animator());
   window.Play = new Player({ name: 'one', markets: Cards.markets });
+  window.AiTwo = new AI({ name: 'two', hand: Cards.players['two'], markets: Cards.markets });
+  window.AiThree = new AI({ name: 'three', hand: Cards.players['three'], markets: Cards.markets });
+  window.AiFour = new AI({ name: 'four', hand: Cards.players['four'], markets: Cards.markets });
 
   const header = document.getElementById('header');
   const intro = document.getElementById('intro');
@@ -66,9 +70,37 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 3200);
   };
 
+  const playGame = () => {
+    const suits = ['hearts', 'diams', 'spades', 'clubs'].sort(randomly)
+    const vals = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'].sort(randomly);
+    const amounts = [8, 10, 10, 12].sort(randomly);
+    const gameDeck = [];
+    let cardName;
+
+    for (let i = 0; i < suits.length; i++) {
+      vals.sort(randomly);
+      for (let j = 0; j < amounts[i]; j++) {
+        cardName = `${vals[j]}-of-${suits[i]}`;
+        gameDeck.push(cardName);
+      }
+    }
+
+    const playerNames = ['one', 'two', 'three', 'four'];
+    gameDeck.sort(randomly);
+    for (let k = 0; k < gameDeck.length; k++) {
+      Cards.deal(gameDeck[k], playerNames[k%4]);
+    }
+  }
+
   window.showOff = showOff;
+  window.playGame = playGame;
   Cards.animator.start();
-  showOff();
+  // showOff();
+  window.setTimeout(playGame, 500);
+  window.setTimeout(Cards.sort, 1500);
+  window.setInterval(AiTwo.makeMove, 2000);
+  window.setInterval(AiThree.makeMove, 2500);
+  window.setInterval(AiFour.makeMove, 3000);
 
 
 })

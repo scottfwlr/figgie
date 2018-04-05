@@ -144,6 +144,9 @@ const setup = (animator) => {
   const takeBid = (name, action, suit) => {
     const sideTwo = bids[inverseOf[action]][suit];
     const sideOne = { player: name, action, suit, price: sideTwo.price }
+
+    if (sideTwo.player === sideOne.player) return;
+
     const podium = document.getElementById(`${sideTwo.action}-box-${suit}`);
     const seller = (sideTwo.action === 'sell') ? (sideTwo) : (sideOne);
     const buyer = (sideTwo.action === 'buy') ? (sideTwo) : (sideOne);
@@ -153,6 +156,7 @@ const setup = (animator) => {
       stackOf(buyer.player).appendChild(cash); // hacky as hell!
       cash.classList.add('visible'); // so hacky!
       animator.move(card.id, podium);
+
       changeCash(buyer.player, -1 * buyer.price);
       animator.move(cash.id, podium);
 
