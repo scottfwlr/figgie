@@ -143,6 +143,9 @@ const setup = (animator) => {
 
   const takeBid = (name, action, suit) => {
     const sideTwo = bids[inverseOf[action]][suit];
+
+    if (!sideTwo) return;
+
     const sideOne = { player: name, action, suit, price: sideTwo.price }
 
     if (sideTwo.player === sideOne.player) return;

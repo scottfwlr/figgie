@@ -5,3 +5,40 @@
   left: 0px;
   right: 0px;
 }
+
+#intro {
+  margin-top: 50px;
+}
+
+#intro article {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+#intro section {
+  flex: none;
+  width: 300px;
+}
+
+#start-the-game {
+    border: 2px solid lightgray;
+    margin: auto;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    padding: 5px 30px;
+    background: whitesmoke;
+
+    color: inherit;
+    font: inherit;
+
+    line-height: normal;
+    -webkit-appearance: none;
+
+}
+
+#start-the-game:hover {
+  border-color: dimgray;
+  box-shadow: 0px 1px 2px grey;
+}
