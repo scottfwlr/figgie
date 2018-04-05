@@ -160,3 +160,15 @@
   flex: auto;
 }
 
+.stack {
+  position: relative;
+}
+
+.stack::before {
+  content: "$" attr(money);
+}
+
+#cash {
+  position: absolute;
+  margin: auto;
+}

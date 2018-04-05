@@ -77,6 +77,9 @@ export class Animator {
   }
 
   move(name, toNode) {
+    if (typeof toNode === 'string') {
+      toNode = document.getElementById(toNode);
+    }
     this.registry[name].toNode = toNode; 
     this.moves.push(name);
   }

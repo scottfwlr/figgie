@@ -41,10 +41,23 @@ const setup = (animator) => {
   const hand = newHand();
   const players = newPlayers();
   const markets = newMarkets();
-
   Object.values(deck).forEach(card => animator.register(card));
-  Object.values(markets.buy).forEach(box => box.setAttribute('price', '-'))
-  Object.values(markets.sell).forEach(box => box.setAttribute('price', '-'))
+  Object.values(markets.buy).forEach(box => {
+    box.setAttribute('price', '-');
+    animator.register(box);
+  });
+  Object.values(markets.sell).forEach(box => {
+    box.setAttribute('price', '-');
+    animator.register(box);
+  });
+  Array.from(document.getElementsByClassName('stack')).forEach(stack => animator.register(stack));
+
+  const cash = document.createElement('div');
+  cash.setAttribute('id', 'cash');
+  cash.innerText = "💵";
+  cash.classList.add('hidden')
+  animator.register(cash);
+
 
   const deal = (name, toName) => {
     if (toName === 'one') {
@@ -52,6 +65,12 @@ const setup = (animator) => {
     }
     else {
       animator.move(name, players[toName]);
+    }
+  }
+
+  const handOf = name => {
+    if (name === 'one') {
+      hand
     }
   }
 
@@ -63,6 +82,18 @@ const setup = (animator) => {
         deal(cards[i].id, 'one');
       }
     });
+  }
+
+  const cardOfSuitFrom = (suit, name) => {
+    let cardArray;
+    if (name === 'one') {
+      cardArray = Array.from(hand[suit].getElementsByClassName('card-container'));
+    }
+    else {
+      debugger
+      cardArray = Array.from(players[name].getElementsByClassName(`card-container ${suit}`));
+    }
+    return cardArray[Math.floor(Math.random()*cardArray.length)];
   }
 
   const bids = {
@@ -80,24 +111,86 @@ const setup = (animator) => {
     }
   }
 
+  const getPrice = (action, suit) => {
+    const price = markets[action][suit].getAttribute('price');
+    if (price === "-") {
+      if (action === "sell") {
+        return Infinity;
+      }
+      else {
+        return -Infinity
+      }
+    }
+    else {
+      return price;
+    }
+  }
+
   const submitBid = bid => {
     const { player, action, suit, price } = bid;
-    markets[action][suit].setAttribute('price', `${price}`);
-    bids[action][suit] = bid;
+    const currentPrice = getPrice(action, suit);
+    const winner = (action === 'sell') ? (price < currentPrice) : (price > currentPrice);
+    if (winner) {
+      markets[action][suit].setAttribute('price', `${price}`);
+      bids[action][suit] = bid;
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 
-  const buy = (suit) => {
-    
+  const inverseOf = { buy: 'sell', sell: 'buy' };
+
+  const takeBid = (name, action, suit) => {
+    const sideTwo = bids[inverseOf[action]][suit];
+    const sideOne = { player: name, action, suit, price: sideTwo.price }
+    const podium = document.getElementById(`${sideTwo.action}-box-${suit}`);
+    const seller = (sideTwo.action === 'sell') ? (sideTwo) : (sideOne);
+    const buyer = (sideTwo.action === 'buy') ? (sideTwo) : (sideOne);
+    const card = cardOfSuitFrom(suit, seller.player);
+    // const cash = create cash emoji node here
+
+    if (seller && buyer && card && podium) {
+      stackOf(buyer.player).appendChild(cash); // hacky as hell!
+      cash.classList.remove('hidden'); // so hacky!
+      animator.move(card.id, podium);
+      animator.move(cash.id, podium);
+
+      const finalize = () => {
+        debugger
+        deal(card.id, buyer.player);
+        animator.move(cash.id, stackOf(seller.player));
+      }
+
+      window.setTimeout(finalize, 600)
+      window.setTimeout(() => cash.classList.add('hidden'), 1200);
+    }
+
   }
 
-  const sell = (suit) => {
-
+  const stackOf = name => {
+    if (name === 'one') {
+      return document.getElementById('player-stack');
+    }
+    else {
+      return players[name].parentElement.getElementsByClassName('stack')[0];
+    }
   }
+
+  const cashOf = name => Number(stackOf(name).getAttribute('money'));
+
+  const changeCash = (name, amount) => {
+    const stack = stackOf(name)
+    const currentCash = Number(stack.getAttribute('money'));
+    stack.setAttribute('money', currentCash + amount);
+  } 
 
   return {
-    deck, hand, players, markets, 
-    animator, sort,
-    deal, submitBid, buy, sell
+    deck, hand, players, markets, bids,
+    animator, sort, deal, 
+    stackOf, cashOf, changeCash, cardOfSuitFrom,
+    getPrice, submitBid, takeBid
   };
 }
 

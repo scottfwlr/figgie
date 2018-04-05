@@ -10,11 +10,15 @@ export default class Player {
     this.hand = hand;
     this.markets = markets;
 
+    this.readStack = this.readStack.bind(this);
     this.readHand = this.readHand.bind(this);
-    this.getPrice = this.getPrice.bind(this);
     this.bidBuy = this.bidBuy.bind(this);
     this.bidSell = this.bidSell.bind(this);
     this.bidBoth = this.bidBoth.bind(this);
+  }
+
+  readStack() {
+    return Cards.cashOf(this.name);
   }
 
   readHand() {
@@ -26,46 +30,26 @@ export default class Player {
     };
   }
 
-  getPrice(action, suit) {
-    const price = this.markets[action][suit].getAttribute('price');
-    if (price === "-") {
-      if (action === "sell") {
-        return Infinity;
-      }
-      else {
-        return -Infinity
-      }
-    }
-    else {
-      return price;
-    }
-  }
-
   bidBuy(suit, price) {
-    if (this.getPrice('buy', suit) < price) {
-      Cards.submitBid({
-        player: this.name,
-        action: 'buy',
-        suit, 
-        price
-      });
-    }
+    return Cards.submitBid({
+      player: this.name,
+      action: 'buy',
+      suit, 
+      price
+    });
   }
 
   bidSell(suit, price) {
-    if (this.getPrice('sell', suit) > price) {
-      Cards.submitBid({
-        player: this.name,
-        action: 'sell',
-        suit, 
-        price
-      });
-    }
+    return Cards.submitBid({
+      player: this.name,
+      action: 'sell',
+      suit, 
+      price
+    });
   }
 
   bidBoth(suit, buy, sell) {
-    this.bidBuy(suit, buy);
-    this.bidSell(suit, sell);
+    return this.bidBuy(suit, buy) && this.bidSell(suit, sell);
   }
 
   buy(suit) {

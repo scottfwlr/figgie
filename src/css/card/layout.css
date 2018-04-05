@@ -26,15 +26,15 @@
   position: absolute;
   height: var(--card-height);
   width: var(--card-width);
-  transform: translate3d(calc(-50% + var(--card-container-size)/2), calc(-50% + var(--card-container-size)/2), 0);
+  transform: translate3d(calc(-50% + var(--card-container-size)/2), calc(-50% + var(--card-container-size)/2), 2px);
 }
 
 .field-hand .card {
-  transform: rotateY( 180deg ) rotate( 90deg ) scale3d(0.8, 0.8, 1) translate3d(calc(-100% + var(--card-container-size)), calc(-50% + var(--card-container-size)*1.45), -2px);
+  transform: rotateY( 180deg ) rotate(  90deg ) scale3d(0.8, 0.8, 1) translate3d(calc(-100% + var(--card-container-size)), calc(-50% + var(--card-container-size)*1.45), -2px);
 }
 
 .market-hand .card {
-  transform: rotate( 180deg ) scale3d(0.9, 0.9, 1) translate3d(calc(50% + var(--card-container-size)), calc(50% + var(--card-container-size)), 2px);
+  transform: rotateY( 180deg ) rotate( 180deg ) scale3d(0.9, 0.9, 1) translate3d(calc(-100% + var(--card-container-size)), calc(50% + var(--card-container-size)), -2px);
 }
 
 .card-front {
