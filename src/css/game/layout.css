@@ -160,13 +160,24 @@
   flex: auto;
 }
 
+.suit-container-super-spacer {
+  flex: auto;
+}
+
+@media (min-width: 820px) {
+  .suit-container-super-spacer {
+    flex: 4 1 auto;
+  }  
+}
+
 .stack {
-  position: relative;
+
 }
 
 .stack::before {
   content: "$" attr(money);
 }
+
 
 #cash {
   position: absolute;

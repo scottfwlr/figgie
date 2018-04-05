@@ -98,9 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // showOff();
   window.setTimeout(playGame, 500);
   window.setTimeout(Cards.sort, 1500);
-  window.setInterval(AiTwo.makeMove, 2000);
-  window.setInterval(AiThree.makeMove, 2500);
-  window.setInterval(AiFour.makeMove, 3000);
+  window.setTimeout(() => window.setInterval(AiTwo.makeMove, 3000), 2000);
+  window.setTimeout(() => window.setInterval(AiThree.makeMove, 3000), 3000);
+  window.setTimeout(() => window.setInterval(AiFour.makeMove, 3000), 4000);
 
 
 })
