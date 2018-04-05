@@ -35,12 +35,31 @@ function newMarkets() {
   };
 }
 
+function newBids() {
+  return {
+    sell: {
+      hearts: null,
+      spades: null,
+       diams: null,
+       clubs: null
+    },
+    buy: {
+      hearts: null,
+      spades: null,
+       diams: null,
+       clubs: null
+    }
+  };
+}
+
 const setup = (animator) => {
   const suitOf = name => name.split('-')[2];
   const deck = newDeck();
   const hand = newHand();
   const players = newPlayers();
   const markets = newMarkets();
+  let bids = newBids();
+
   Object.values(deck).forEach(card => animator.register(card));
   Object.values(markets.buy).forEach(box => {
     box.setAttribute('price', '-');
@@ -68,12 +87,6 @@ const setup = (animator) => {
     }
   }
 
-  const handOf = name => {
-    if (name === 'one') {
-      hand
-    }
-  }
-
   const sort = () => {
     Object.values(hand).forEach(suit => {
       const cards = Array.from(suit.getElementsByClassName('card-container'));
@@ -90,26 +103,12 @@ const setup = (animator) => {
       cardArray = Array.from(hand[suit].getElementsByClassName('card-container'));
     }
     else {
-      debugger
-      cardArray = Array.from(players[name].getElementsByClassName(`card-container ${suit}`));
+      const figures = Array.from(players[name].getElementsByClassName(suit));
+      cardArray = figures.map(el => el.parentElement.parentElement);
     }
     return cardArray[Math.floor(Math.random()*cardArray.length)];
   }
 
-  const bids = {
-    sell: {
-      hearts: null,
-      spades: null,
-       diams: null,
-       clubs: null
-    },
-    buy: {
-      hearts: null,
-      spades: null,
-       diams: null,
-       clubs: null
-    }
-  }
 
   const getPrice = (action, suit) => {
     const price = markets[action][suit].getAttribute('price');
@@ -149,22 +148,28 @@ const setup = (animator) => {
     const seller = (sideTwo.action === 'sell') ? (sideTwo) : (sideOne);
     const buyer = (sideTwo.action === 'buy') ? (sideTwo) : (sideOne);
     const card = cardOfSuitFrom(suit, seller.player);
-    // const cash = create cash emoji node here
 
     if (seller && buyer && card && podium) {
       stackOf(buyer.player).appendChild(cash); // hacky as hell!
-      cash.classList.remove('hidden'); // so hacky!
+      cash.classList.add('visible'); // so hacky!
       animator.move(card.id, podium);
+      changeCash(buyer.player, -1 * buyer.price);
       animator.move(cash.id, podium);
 
       const finalize = () => {
-        debugger
         deal(card.id, buyer.player);
         animator.move(cash.id, stackOf(seller.player));
+        changeCash(seller.player, seller.price);
+        bids = newBids();
+        Object.values(markets.buy).forEach(box => box.setAttribute('price', '-'));
+        Object.values(markets.sell).forEach(box => box.setAttribute('price', '-'));
       }
 
-      window.setTimeout(finalize, 600)
-      window.setTimeout(() => cash.classList.add('hidden'), 1200);
+      window.setTimeout(finalize, 1200)
+      window.setTimeout(() => {
+        cash.classList.remove('visible');
+        sort();
+      }, 1800);
     }
 
   }

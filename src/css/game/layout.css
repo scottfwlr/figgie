@@ -171,4 +171,9 @@
 #cash {
   position: absolute;
   margin: auto;
+  visibility: hidden;
+}
+
+#cash.visible {
+  visibility: visible;
 }

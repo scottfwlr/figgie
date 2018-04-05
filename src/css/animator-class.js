@@ -41,7 +41,7 @@ export class AnimationEntity {
       { transform: `translate3d(${dx}px, ${dy}px, 0)` }, 
       { transform: 'translate3d(0, 0, 0)' }
     ], {
-      duration: 400,
+      duration: 600,
       delay,
       easing: 'ease',
       fill: 'backwards'
@@ -112,7 +112,7 @@ export class Animator {
     // make DOM changes:
     let delay = 0;
     this.moves.forEach((name, i) => {
-      this.registry[name].delay = i*20;
+      this.registry[name].delay = i*15;
       const { node, toNode } = this.registry[name];
       toNode.appendChild(node);
     })

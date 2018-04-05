@@ -52,12 +52,5 @@ export default class Player {
     return this.bidBuy(suit, buy) && this.bidSell(suit, sell);
   }
 
-  buy(suit) {
-
-  }
-
-  sell(suit) {
-
-  }
 
 }
